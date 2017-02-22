@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-MAINTAINER Ramón G. Camus <rgcamus@gmail.com>
+MAINTAINER Steve Jernigan <sjernigan@reverbnation.com>
 
 RUN apk update && apk upgrade
 RUN apk add curl wget bash
@@ -12,31 +12,15 @@ RUN apk add ruby-dev g++ musl-dev make
 RUN echo "gem: --no-document" > /etc/gemrc
 RUN gem install bundler smashing json
 
-# Create dashboard and link volumes
-RUN smashing new smashing
+ARG smahing_repo_path=/etc/git_repo/smashing
 
-WORKDIR /smashing
+WORKDIR $smahing_repo_path
 
-RUN cd /smashing 					\
+RUN cd $smahing_repo_path					\
     && bundle    					\
-    && ln -s /smashing/dashboards /dashboards 		\
-    && ln -s /smashing/jobs       /jobs 		\
-    && ln -s /smashing/assets     /assets		\
-    && ln -s /smashing/lib        /lib-smashing		\
-    && ln -s /smashing/public     /public 		\
-    && ln -s /smashing/widgets    /widgets 		\
-    && mkdir /smashing/config 				\
-    && mv /smashing/config.ru /smashing/config/config.ru  	\
-    && ln -s /smashing/config/config.ru /smashing/config.ru  	\
-    && ln -s /smashing/config 	  /config  			\
     && rm -rf /var/cache/apk/*
-
-COPY run.sh /
-
-VOLUME ["/dashboards", "/jobs", "/lib-smashing", "/config", "/public", "/widgets", "/assets"]
 
 ENV PORT 3030
 EXPOSE $PORT
-WORKDIR /smashing
 
 CMD ["/run.sh"]
