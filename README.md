@@ -25,31 +25,6 @@ If you want smashing to use a custom port inside the container, e g 8080, use th
 
 ```docker run -d -e PORT=8080 -p 80:8080 reverbnation/alpine_smashing```
 
-### Dashboards
-To provide a custom dashboard, use container volume **/dashboards**:
-
-```docker run -v=/my/custom/dashboards:/dashboards -d -p 8080:3030 rgcamus/alpine_smashing```
-
-(*Don't forget to also provide the layout.erb*)
-
-### Jobs
-To provide custom jobs, use container volume **/jobs**:
-
-```docker run -v=/my/cool/job:/jobs -d -p 8080:3030 reverbnation/alpine_smashing```
-
-### Widgets
-To install custom widgets supply the gist IDs of the widgets as an environment variable:
-
-```docker run -d -e WIDGETS=5641535 -p 8080:3030 reverbnation/alpine_smashing```
-
-This example will install the [Random Aww](https://gist.github.com/chelsea/5641535) widget
-before starting smashing. Multiple widgets can be supplied.
-
-Also you can use local custom widgets
-
-```docker run -v=/my/cool/widgets:/widgets -d -p 8080:3030 reverbnation/alpine_smashing```
-
-
 ### Gems
 To install gems, supply the gem name(s) as an environment variable:
 
