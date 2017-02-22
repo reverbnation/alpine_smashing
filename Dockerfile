@@ -10,7 +10,7 @@ RUN apk add ruby ruby-bundler nodejs
 RUN apk add ruby-dev g++ musl-dev make
 
 RUN echo "gem: --no-document" > /etc/gemrc
-RUN gem install bundler smashing json
+RUN gem install bundler
 
 ARG smahing_repo_path=/etc/git_repo/smashing
 
