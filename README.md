@@ -3,33 +3,27 @@ Run [Smashing](http://dashing.io/) in a minimal [Alpine](https://alpinelinux.org
 
 Using alpine image. The container size has been reduced from about 800MB to about 200MB.
 
-Link: [rgcamus/alpine_smashing](https://registry.hub.docker.com/u/rgcamus/alpine_smashing/)
-
-[![Docker Stars](https://img.shields.io/docker/stars/rgcamus/alpine_smashing.svg)](https://hub.docker.com/r/rgcamus/alpine_smashing)
-[![Docker Pulls](https://img.shields.io/docker/pulls/rgcamus/alpine_smashing.svg)](https://hub.docker.com/r/rgcamus/alpine_smashing)
-
-
+This container assumes the presence of a smashing repository that was mounted in by another sidecar container like git-sync.  The default location for the repo is /etc/git_repo/smashing
 
 ## Build (optional)
 
-```git clone https://github.com/rgcamus/dockerfile-alpine_smashing.git```
+```git clone https://github.com/reverbnation/dockerfile-alpine_smashing.git```
 
 ```cd dockerfile-alpine_smashing```
 
 ```docker build -t alpine_smashing . ```
 
 ## Run
-```docker run -d -p 8080:3030 rgcamus/alpine_smashing```
+```docker run -d -p 8080:3030 reverbnation/alpine_smashing```
 
-And point your browser to [http://localhost:8080/](http://localhost:8080/),
-or to [http://localhost:8080/sampletv](http://localhost:8080/sampletv) for a 1080p TV layout.
+And point your browser to [http://localhost:8080/](http://localhost:8080/)
 
 
 ## Configuration
 ### Custom smashing port
 If you want smashing to use a custom port inside the container, e g 8080, use the environment variable `$PORT`:
 
-```docker run -d -e PORT=8080 -p 80:8080 rgcamus/alpine_smashing```
+```docker run -d -e PORT=8080 -p 80:8080 reverbnation/alpine_smashing```
 
 ### Dashboards
 To provide a custom dashboard, use container volume **/dashboards**:
@@ -41,45 +35,35 @@ To provide a custom dashboard, use container volume **/dashboards**:
 ### Jobs
 To provide custom jobs, use container volume **/jobs**:
 
-```docker run -v=/my/cool/job:/jobs -d -p 8080:3030 rgcamus/alpine_smashing```
+```docker run -v=/my/cool/job:/jobs -d -p 8080:3030 reverbnation/alpine_smashing```
 
 ### Widgets
 To install custom widgets supply the gist IDs of the widgets as an environment variable:
 
-```docker run -d -e WIDGETS=5641535 -p 8080:3030 rgcamus/alpine_smashing```
+```docker run -d -e WIDGETS=5641535 -p 8080:3030 reverbnation/alpine_smashing```
 
 This example will install the [Random Aww](https://gist.github.com/chelsea/5641535) widget
 before starting smashing. Multiple widgets can be supplied.
 
 Also you can use local custom widgets
 
-```docker run -v=/my/cool/widgets:/widgets -d -p 8080:3030 rgcamus/alpine_smashing```
+```docker run -v=/my/cool/widgets:/widgets -d -p 8080:3030 reverbnation/alpine_smashing```
 
 
 ### Gems
 To install gems, supply the gem name(s) as an environment variable:
 
-```docker run -d -e GEMS=instagram -e WIDGETS=5278790 -p 8080:3030 rgcamus/alpine_smashing```
+```docker run -d -e GEMS=instagram -e WIDGETS=5278790 -p 8080:3030 reverbnation/alpine_smashing```
 
 This example installs the [Instagram photos by location](https://gist.github.com/mjamieson/5278790) widget,
 which depends on the instagram gem. Multiple gems and widgets can be supplied like so:
 
-```docker run -d -e GEMS="mysql instagram" -e WIDGETS=5278790 -p 8080:3030 rgcamus/alpine_smashing```
+```docker run -d -e GEMS="mysql instagram" -e WIDGETS=5278790 -p 8080:3030 reverbnation/alpine_smashing```
 
-### Public (favicon, 404)
-To provide custom 404 and favicon, use container volume **/public**.
-
-### Configuration File
-The configuration file ```config.ru``` is available on volume */config*.
-
-Edit this file to change your API key, to add authentication and more.
-
-### lib volume
-The smashing lib dir is available on volume */lib-smashing*.
-
-Note: This is a fork of the dockerfile-dashing. Read about that [here](http://github.com/frvi/dockerfile-dashing)
+Note: This is a fork of the dockerfile-alpine-smashing. Read about that [here](https://github.com/rgcamus/dockerfile-alpine_smashing)
 
 ## Thanks
+- [@rgcamus](https://github.com/rgcamus), original author of the Dockerfile)
 - [@frvi](https://github.com/frvi), original author of run.sh)
 - [@mattgruter](https://github.com/mattgruter), awesome contributions!
 - [@rowanu](https://github.com/rowanu), [Hotness Widget](https://gist.github.com/rowanu/6246149).
