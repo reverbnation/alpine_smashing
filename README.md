@@ -7,9 +7,9 @@ This container assumes the presence of a smashing repository that was mounted in
 
 ## Build (optional)
 
-```git clone https://github.com/reverbnation/dockerfile-alpine_smashing.git```
+```git clone https://github.com/reverbnation/alpine_smashing.git```
 
-```cd dockerfile-alpine_smashing```
+```cd alpine_smashing```
 
 ```docker build -t alpine_smashing . ```
 
