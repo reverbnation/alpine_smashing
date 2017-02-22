@@ -16,10 +16,6 @@ ARG smahing_repo_path=/etc/git_repo/smashing
 
 WORKDIR $smahing_repo_path
 
-RUN cd $smahing_repo_path					\
-    && bundle    					\
-    && rm -rf /var/cache/apk/*
-
 ENV PORT 3030
 EXPOSE $PORT
 
