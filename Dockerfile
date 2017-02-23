@@ -19,4 +19,4 @@ WORKDIR $smahing_repo_path
 ENV PORT 3030
 EXPOSE $PORT
 
-CMD ["/run.sh"]
+CMD ["run.sh"]
