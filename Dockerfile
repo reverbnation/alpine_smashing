@@ -12,7 +12,7 @@ RUN apk add ruby ruby-bundler nodejs
 RUN apk --update add --virtual build_deps \
     build-base ruby-dev libc-dev linux-headers \
     openssl-dev postgresql-dev libxml2-dev libxslt-dev && \
-    sudo -iu app bundle install --path vendor/bundle && \
+    bundle install --path vendor/bundle && \
     apk del  build_deps
 
 RUN echo "gem: --no-document" > /etc/gemrc
