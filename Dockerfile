@@ -1,4 +1,4 @@
-FROM ruby:alpine:latest
+FROM ruby:alpine
 #FROM alpine:latest
 
 MAINTAINER Steve Jernigan <sjernigan@reverbnation.com>
