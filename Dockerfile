@@ -9,7 +9,7 @@ RUN apk add ruby ruby-bundler nodejs
 
 RUN echo "gem: --no-document" > /etc/gemrc
 
-ARG native_code_gems="bundler nokogiri http eventmachine json smashing"
+ARG native_code_gems="bundler nokogiri http eventmachine json smashing sanitize"
 
 # Needed for make native extensions
 #RUN apk add ruby-dev g++ musl-dev make
