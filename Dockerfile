@@ -15,7 +15,7 @@ ARG native_code_gems="bundler http eventmachine json smashing sanitize"
 #RUN apk add ruby-dev g++ musl-dev make
 RUN apk --update add --virtual build_deps \
     build-base ruby-dev libc-dev linux-headers \
-    openssl-dev libxml2-dev libxslt-dev && \
+    openssl-dev libxml2-dev libxslt-dev git && \
     gem install $native_code_gems 
     
     # && apk del  build_deps  
